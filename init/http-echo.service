@@ -1,0 +1,17 @@
+[Unit]
+Description=http-echo service
+After=network.target
+
+[Service]
+Type=simple
+# User=http-echo
+# Group=http-echo
+LimitNOFILE=1024
+
+Restart=on-failure
+RestartSec=15
+
+ExecStart={{ BINPATH }}/http-echo -a :8080 -r 3 -w 10
+
+[Install]
+WantedBy=multi-user.target
